@@ -1,9 +1,9 @@
 # wechatcpp - Qt C++ - Nodejs - React
 
 ## Install lib
-Cài đặt [jwt-cpp](https://github.com/Thalhammer/jwt-cpp) 
-Cài đặt [socket.io-client-cpp](https://github.com/socketio/socket.io-client-cpp) 
-OS target: Ubuntu
+1. Cài đặt [jwt-cpp](https://github.com/Thalhammer/jwt-cpp)
+2. Cài đặt [socket.io-client-cpp](https://github.com/socketio/socket.io-client-cpp) 
+3. OS target running: Ubuntu
 
 ## Using Socket.io C/C++
 
