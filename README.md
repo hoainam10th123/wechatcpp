@@ -52,6 +52,35 @@ _io->socket()->on("NewMessage", [&](sio::event& ev)
 ```
 
 ### listen event from server trả về là một array (list)
+
+**user model**
+```javascript
+export interface IUser{
+    _id: string;
+    displayName: string;
+    email: string;
+    picture: string;
+    status: string;
+    createdAt: Date;
+    lastActive: Date;
+} 
+```
+
+**message model**
+```javascript
+export interface IMessage{
+    _id: string;
+    sender: IUser;
+    recipient: IUser;
+    content: string;
+    dateRead: Date;
+    messageSent: Date;
+    files: any[];
+    createdAt: Date;
+    updatedAt: Date;
+} 
+```
+
 ```cpp
 _io->socket()->on("receive all message", [&](sio::event& ev)
 {
