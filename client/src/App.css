@@ -1,0 +1,51 @@
+.hoverSidebarBody{
+  &:hover {
+    background-color: rgb(221, 229, 255);
+    border-radius: 10px;
+  }
+  cursor: pointer  
+}
+
+.styleIconCall{
+  margin: 10px;
+  color: rgb(105, 105, 255);
+}
+
+.chatBody{
+  /* background-image: url("https://res.cloudinary.com/dmhcnhtng/image/upload/v1677358270/Untitled-1_copy_rpx8yb.jpg"); */
+  height: calc(100vh - 210px);
+  overflow-y: scroll;
+}
+
+.border{
+  border: 1px solid rgb(103, 92, 247);
+}
+
+.messageLeft{
+  background-color: rgb(247, 224, 224);
+  border-radius: 10px;
+  max-width: 80%;
+  padding: 10px;
+}
+
+.messageRight{
+  background-color: rgb(97, 100, 255);
+  border-radius: 10px;
+  max-width: 80%;
+  padding: 10px;
+  color: white;
+}
+
+.dinhViVideoCallUI{
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.CallEndStyle{
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+}

@@ -1,0 +1,17 @@
+
+https://github.com/Thalhammer/jwt-cpp
+
+https://github.com/socketio/socket.io-client-cpp/blob/master/INSTALL.md#with-cmake
+
+Socket.io-client-cpp
+
+QSize sizeMess(1, 100);
+MessageItem *message = new MessageItem(nullptr, QString::fromStdString(senderName), QString::fromStdString(content));
+QListWidgetItem *item = new QListWidgetItem(ui->listWidgetMessages);
+// disable select item
+item->setFlags(item->flags() & ~Qt::ItemIsEnabled);
+item->setSizeHint(sizeMess);
+ui->listWidgetMessages->setItemWidget(item, message);
+ui->listWidgetMessages->addItem(item);
+
+tôi muốn sử dụng kiểu tường minh chứ không muốn dùng auto

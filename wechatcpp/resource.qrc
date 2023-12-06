@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/logout.png</file>
+        <file>img/online.png</file>
+        <file>img/user.png</file>
+        <file>img/chatlogo.png</file>
+        <file>img/logochat.png</file>
+    </qresource>
+</RCC>
