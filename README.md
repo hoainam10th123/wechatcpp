@@ -1,1 +1,1 @@
-# wechatcpp
+# wechatcpp - Qt C++ - Nodejs - React
