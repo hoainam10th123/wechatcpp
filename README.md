@@ -5,6 +5,14 @@ https://www.markdownguide.org/cheat-sheet/
 2. Cài đặt [socket.io-client-cpp](https://github.com/socketio/socket.io-client-cpp) 
 3. OS target running: Ubuntu
 
+## Tính năng app (Qt C++)
+
+1. Chat 1-1
+2. typing
+3. online - offline
+4. Localstorage
+5. Mutex
+
 ## Using Socket.io C/C++
 
 ### emit một string
