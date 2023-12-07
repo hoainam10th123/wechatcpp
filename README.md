@@ -100,3 +100,9 @@ _io->socket()->on("receive all message", [&](sio::event& ev)
 	Q_EMIT loadMessagesItem(listMess);
 });
 ```
+
+![pic1](wechat1.png)
+
+![pic2](wechat2.png)
+
+![pic3](wechat3.png)
