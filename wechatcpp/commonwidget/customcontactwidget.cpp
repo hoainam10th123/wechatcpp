@@ -10,7 +10,7 @@ CustomContactWidget::CustomContactWidget(QWidget *parent, const QString &display
     setUserName(displayName);
     hLayoutContact = new QHBoxLayout();
     avatar = new CircularAvatar(this, ":/img/user.png", 60,60);
-    onlineAvatar = new CircularAvatar(avatar, ":img/online.png", 20,20);
+    onlineAvatar = new CircularAvatar(avatar, ":/img/online.png", 20,20);
     onlineAvatar->move(42, 37);
 
     QVBoxLayout * vlayoutName = new QVBoxLayout();

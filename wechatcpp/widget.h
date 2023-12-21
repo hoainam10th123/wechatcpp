@@ -90,7 +90,7 @@ private:
     QNetworkAccessManager * net_manager;
     QNetworkReply * net_reply;
     QByteArray * m_data_buffer;
-    QString token;
+    QString token, serverIp;
     QString selectedUserId="";
     QTimer* timer;
     bool typeing = false;

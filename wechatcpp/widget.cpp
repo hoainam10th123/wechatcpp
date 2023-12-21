@@ -26,15 +26,18 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
+    popUp = new Popup(this);
     //Initialization
     net_manager =  new QNetworkAccessManager(this);
-    //net_reply = nullptr;
+    net_reply = nullptr;
     m_data_buffer = new QByteArray();
 
     //load token from storage
     QSettings settings("AGU","SettingToken");
     settings.beginGroup("StoreToken");
     token = settings.value("token",QVariant("")).toString();
+    serverIp = settings.value("server",QVariant("localhost:8000")).toString();
+    settings.endGroup();
     if(token != ""){
         // chat home page
         createSocket();
@@ -64,6 +67,8 @@ Widget::~Widget()
 {
     _io->socket()->off_all();
     _io->socket()->off_error();
+    usersOnline.clear();
+    usersOnlineItems.clear();
     delete m_data_buffer;    
     delete ui;
 }
@@ -103,9 +108,9 @@ void Widget::onLoadMessagesItem(const QList<Message>& listMess){
 
 void Widget::loadConversation()
 {
-
+    const QString server = "http://"+serverIp;
     m_data_buffer->clear();
-    const QUrl API_ENDPOINT("http://localhost:8000/api/v1/conversations");
+    const QUrl API_ENDPOINT(server+"/api/v1/conversations");
     QNetworkRequest request;
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     request.setRawHeader("Authorization", QByteArray("Bearer " + token.toUtf8()));
@@ -169,7 +174,8 @@ void Widget::createSocket(){
     std::map<std::string, std::string> query;
     query["token"] = token.toStdString();
 
-    _io->connect("http://localhost:8000", query);
+    const QString server = "http://"+serverIp; // http://localhost:8000
+    _io->connect(server.toStdString(), query);
 
     _io->socket()->on("UserIsOnline", [&](sio::event& ev)
       {
@@ -307,9 +313,8 @@ void Widget::on_user_online(const User& user){
     if(itemUser != nullptr){
         CustomContactWidget* contactWidget = (CustomContactWidget*) ui->listWidgetContact->itemWidget(itemUser);
         contactWidget->setOnline(true);
-    }
+    }    
     //show popup
-    popUp = new Popup(this);
     popUp->setPopupText("NOTIFICATION\n"+user.getDisplayName() + " online");
     popUp->show();
 }
@@ -322,7 +327,6 @@ void Widget::on_user_offline(const User& user){
         contactWidget->setOnline(false);
     }
     // show popup
-    popUp = new Popup(this);
     popUp->setPopupText("NOTIFICATION\n"+user.getDisplayName() + " offline");
     popUp->show();
 }
@@ -348,7 +352,7 @@ void Widget::on_lineEditEmail_textChanged(const QString &arg1)
         ui->lineEditEmail->setStyleSheet("QLineEdit { color: black;}");
 }
 
-
+//login button
 void Widget::on_pushButton_clicked()
 {
     //QString email = ui->lineEditEmail->text();
@@ -357,11 +361,13 @@ void Widget::on_pushButton_clicked()
         QMessageBox::warning(this, tr("Email verification"), tr("Email format is incorrect."), QMessageBox::Ok);
     }else{
         token = ui->textEditToken->toPlainText();
+        serverIp = ui->lineEditServerIp->text();
         createSocket();
         loadConversation();
         QSettings settings("AGU","SettingToken");
         settings.beginGroup("StoreToken");
         settings.setValue("token",token);
+        settings.setValue("server",serverIp);
         settings.endGroup();
         // change to chat home page
         ui->stackedWidget->setCurrentIndex(1);
